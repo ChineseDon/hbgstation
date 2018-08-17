@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <input type="text" @blur="get">
     <h2><router-link to="/login">Login</router-link></h2>
   </div>
 </template>
@@ -13,6 +14,11 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  methods: {
+    get() {
+      alert('213435');
+    }
   }
 }
 </script>
@@ -23,7 +29,10 @@ export default {
     width: 100%;
     /*font-size: .3rem;*/
   }
-
+  input {
+    width: 100%;
+    height: 88px;
+  }
 h1, h2 {
   font-weight: normal;
 }

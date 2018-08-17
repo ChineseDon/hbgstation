@@ -4,8 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import FastClick from 'fastclick'
-import '@/assets/js/fixible'
+import vuecookies from 'vue-cookies'
+import 'lib-flexible/flexible.js'
 import '@/assets/stylus/index.styl'
+import mandMobile from 'mand-mobile'
+import 'mand-mobile/lib/mand-mobile.css'
+
 // import Vconsole from 'vconsole'
 // if(process.env.NODE_ENV === 'development') {
 //   let console = new Vconsole()
@@ -15,7 +19,8 @@ import '@/assets/stylus/index.styl'
 Vue.config.productionTip = false
 
 FastClick.attach(document.body)
-
+Vue.use(mandMobile)
+Vue.use(vuecookies)
 // router.beforeEach((to, from ,next) => {
 //   // 强制把url信息留在微信浏览器
 //

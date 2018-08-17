@@ -1,6 +1,7 @@
 <template>
     <div class="mine">
       我的小站
+      <button @click="getCookies">获取数据</button>
       <router-link to="/login" class="login">去登陆</router-link>
     </div>
 </template>
@@ -10,6 +11,15 @@
       name: "Mine",
       created() {
         console.log(window.location.href);
+      },
+      methods: {
+        getCookies() {
+          let userInfo = JSON.parse(this.$cookies.get('userInfo'));
+          console.log(userInfo.openid);
+          console.log(userInfo.unionid);
+          console.log(userInfo.imgUrl);
+          console.log(userInfo.nick)
+        }
       }
     }
 </script>

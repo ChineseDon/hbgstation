@@ -12,7 +12,6 @@ import FastThree from '@/components/fastthree/fastthree'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   linkActiveClass: 'is-active',
   routes: [
     {

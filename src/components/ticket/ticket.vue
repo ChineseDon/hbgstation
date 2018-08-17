@@ -2,6 +2,7 @@
   <div class="ticket">
     这里是ticket
     <div @click="tothree">跳转到快三</div>
+    <input type="text" @keyup.13="get">
     <router-view/>
   </div>
 </template>
@@ -17,6 +18,9 @@
         this.$router.push({
           path: `/ticket/fastthree`
         })
+      },
+      get() {
+        alert(123);
       }
     }
   }
@@ -28,4 +32,8 @@
   min-height 100vh
   color bisque
   font-size .4rem
+  input
+    width 100%
+    height 88px
+    border 1px solid red
 </style>
