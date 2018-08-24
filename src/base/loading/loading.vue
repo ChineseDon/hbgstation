@@ -22,8 +22,8 @@
 
 .desc {
   line-height: 20px;
-  font-size:
-  color:
+  font-size: 32px;
+  color: #333333;
 }
 
 </style>

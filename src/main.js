@@ -9,7 +9,9 @@ import 'lib-flexible/flexible.js'
 import '@/assets/stylus/index.styl'
 import mandMobile from 'mand-mobile'
 import 'mand-mobile/lib/mand-mobile.css'
+import vconsole from 'vconsole'
 
+let vConsole = new vconsole()
 // import Vconsole from 'vconsole'
 // if(process.env.NODE_ENV === 'development') {
 //   let console = new Vconsole()

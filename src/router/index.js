@@ -8,6 +8,7 @@ import MyData from '@/components/mydata/mydata'
 import Friend from '@/components/friend/friend'
 import Mine from '@/components/mine/mine'
 import FastThree from '@/components/fastthree/fastthree'
+import chart from '@/components/chart/fastThree'
 
 Vue.use(Router)
 
@@ -26,6 +27,15 @@ export default new Router({
       },
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/fastThreeChart',
+      meta: {
+        index: 1,
+        title: 'chart'
+      },
+      name: 'chart',
+      component: chart
     },
     {
       path: '/service',

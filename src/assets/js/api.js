@@ -5,9 +5,13 @@ import axios from 'axios'
  * 请求参数：
  * url: 当前页面url地址不包含后面hash部分
  */
+const hbgApi = {
+  wxGetSign: 'https://www.haibingo.com/station/WxPay/getSign'
+}
+
 export function getSign(url) {
   return new Promise((resolve, reject) => {
-    axios.get('https://www.haibingo.com/station/WxPay/getSign', {
+    axios.get(hbgApi.wxGetSign, {
       params: {
         url: url
       }

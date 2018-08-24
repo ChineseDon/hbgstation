@@ -35,8 +35,10 @@
   bottom 0
   display flex
   width 100%
-  height .88rem
+  height 88px
   border-top 1px solid #eee
+  background-color #fff
+  z-index 120
   .tab-item
     flex 1
     text-align center
@@ -46,12 +48,12 @@
     .icon-yaoqing
     .icon-home
       display block
-      font-size .4rem
+      font-size 40px
       color #000
-      padding .05rem 0
+      padding 8px 0
     span
       display block
-      font-size .3rem
+      font-size 26px
   .is-active
     color #ff9119
     .iconfont

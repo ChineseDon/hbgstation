@@ -19,9 +19,11 @@
         v-for="i in list"
         :key="i"
         class="scroll-view-list"
+        v-show="list"
       >
         <p class="scroll-view-item">{{i}}</p>
       </div>
+      <loading v-show="!list">正在加载中....</loading>
       <div class="border-btm"></div>
       <md-scroll-view-more
         slot="more"
@@ -29,16 +31,18 @@
       >
       </md-scroll-view-more>
     </md-scroll-view>
+
   </div>
 </template>
 
 <script>
   import {ScrollView, ScrollViewRefresh, ScrollViewMore} from 'mand-mobile'
+  import loading from './../../base/loading/loading'
     export default {
       name: "FastThree",
       data() {
         return {
-          list: 5,
+          list: 0,
           isFinished: false,
         }
       },
@@ -46,6 +50,7 @@
         [ScrollView.name]: ScrollView,
         [ScrollViewRefresh.name]: ScrollViewRefresh,
         [ScrollViewMore.name]: ScrollViewMore,
+        loading
       },
       mounted() {
         window.ScrollViewTrigger1 = () => {
@@ -54,6 +59,7 @@
       },
       created() {
         console.log('我进来了l');
+        this.$_onRefresh();
       },
       methods: {
         $_onRefresh() {
@@ -87,13 +93,14 @@
   width 100%
   height 100vh
   color #000
-  font-size .5rem
+  font-size 50px
   .span-k3
-    font-size .3rem
+    font-size 30px
   p
    text-align center
   .border-btm
-   width 75rem
-   height 20px
-   border-bottom 1px solid red
+   width 100%
+   height 100px
+   border 1px solid red /*no*/
+   border-radius 20px /*no*/
 </style>

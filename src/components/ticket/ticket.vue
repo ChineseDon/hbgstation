@@ -1,8 +1,9 @@
 <template>
   <div class="ticket">
-    这里是ticket
+
+    <span>这里是ticket</span>
     <div @click="tothree">跳转到快三</div>
-    <input type="text" @keyup.13="get">
+    <!--<input type="text" @keyup.13="get">-->
     <router-view/>
   </div>
 </template>
@@ -12,8 +13,12 @@
     name: "Ticket",
     created() {
       console.log(window.location.href);
+      this.$router.push({
+        path: `/ticket/fastthree`
+      })
     },
     methods: {
+
       tothree() {
         this.$router.push({
           path: `/ticket/fastthree`
@@ -31,7 +36,9 @@
   width 100%
   min-height 100vh
   color bisque
-  font-size .4rem
+  font-size 40px
+  span
+    font-size 30px
   input
     width 100%
     height 88px

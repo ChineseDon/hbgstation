@@ -93,37 +93,50 @@ function wxConfig(curUrl, apiList) {
   })
 }
 
-function paizhao () {
-  let localIds = [];
-  wx.chooseImage({
-    count: 1, // 默认9
-    sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
-    sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
-    success: function (res) {
-      localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-    }
-  });
-
-  return localIds;
+function getImgData(localIds, imgData, callback) {
+  if(localIds.length > 0) {
+    wx.getLocalImgData({
+      localId: localIds.shift(), // 图片的localID
+      success: function (res) {
+        let localData = res.localData;
+        if (localData.indexOf('data:image') != 0) {
+          //判断是否有这样的头部
+          localData = 'data:image/png;base64,' + localData
+        }
+        localData = localData.replace(/\r|\n/g, '').replace('data:image/jgp', 'data:image/png')
+        imgData.push(localData); // localData是图片的base64数据，可以用img标签显示
+        getImgData(localIds, imgData, callback);
+      }
+    });
+  } else {
+    callback(imgData)
+  }
 }
 
-function getAlbum () {
-  let localIds = [];
+// 封装微信体系内获取图片
+/* 参数描述：
+ * imgNum: 需要获取的图片张数（1~9）
+ * 返回参数：
+ * imgs：根据获取的图片，返回图片的base64位数组
+ */
+function getWXImage(imgNum, callback) {
+  let imgs = [];
   wx.chooseImage({
-    count: 1, // 默认9
+    count: imgNum, // 默认9
     sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
     success: function (res) {
-      var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+      if(res.localIds.length > 0) { // 返回选定照片的本地ID列表
+        getImgData(res.localIds, imgs, function(imgData) {
+          callback(imgData);
+        })
+      }
     }
-  });
-
-  return localIds;
+  })
 }
 
 export default {
   wxConfig,
   wxShare,
-  paizhao,
-  getAlbum
+  getWXImage
 }
